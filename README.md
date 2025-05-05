@@ -1,7 +1,8 @@
  # <p align="center"> GreenCart Platform Penjualan Tanaman 
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/id/f/f0/Logo_Unsulbar.png" width="150" alt="Logo Unsulbar">
+  <img src=["https://upload.wikimedia.org/wikipedia/id/f/f0/Logo_Unsulbar.png](https://user-images.githubusercontent.com/12345678/l17747e45-bae0-4b55-a024-558fd48887e5.png
+)" width="150" alt="Logo Unsulbar">
 </p>
 
 <p align="center">
