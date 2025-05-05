@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 <!-- <!-- <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+=======
+ # <p align="center"> GreenCart Platform Penjualan Tanaman 
+
+<p align="center">
+  <img src=["https://upload.wikimedia.org/wikipedia/id/f/f0/Logo_Unsulbar.png](https://user-images.githubusercontent.com/12345678/l17747e45-bae0-4b55-a024-558fd48887e5.png
+)" width="150" alt="Logo Unsulbar">
+</p>
+>>>>>>> 4ed9ebd916b9b18acc125fffeec172f63b2ce2ca
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -166,7 +175,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | updated_at   | timestamp |                                                |
 
 ---
-aa
+
 <h3>Relasi Antar Tabel – Sistem GreenCart</h3>
 
 | Tabel Asal  | Tabel Tujuan | Jenis Relasi   | Keterangan                                          |
@@ -177,5 +186,3 @@ aa
 | categories  | products      | One to Many   | Kategori memiliki banyak produk                     |
 
 ---
-
-Apakah kamu ingin versi ini dijadikan README untuk GitHub atau file .docx juga?
