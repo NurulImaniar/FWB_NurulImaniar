@@ -1,7 +1,6 @@
-
 <h1 align="center">GreenCart</h1>
 <br>
-<h3 align="center">Platform Penjualan Tanaman </h3>
+<h3 align="center">Platform Penjualan Tanaman</h3>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/7bc336f0-571c-4922-91a4-474f00180862" alt="Logo unsulbar" width="200"/>
 </p>
@@ -35,82 +34,75 @@
 | Fitur                        | Deskripsi                                              |
 |-----------------------------|---------------------------------------------------------|
 | Login ke dashboard          | Akses ke backend/admin panel                            |
-| CRUD produk tanaman         | Tambah, ubah, hapus tanaman                             |
-| CRUD kategori tanaman       | Tambah, ubah, hapus kategori tanaman                    |
+| CRUD produk tanaman         | Tambah, edit, hapus tanaman                             |
+| CRUD kategori tanaman       | Tambah, edit, hapus kategori tanaman                    |
 | Kelola transaksi            | Melihat dan memverifikasi pesanan dari customer         |
 | Manajemen pengguna (opsional) | Mengelola data customer (edit/hapus akun)             |
 
----
+<h3>Tabel-tabel Database dan Struktur</h3>
 
-<h3>Tabel-tabel Database dan Tipenya</h3>
+### Tabel Users
+| Kolom      | Tipe      | Keterangan                        |
+|------------|-----------|-----------------------------------|
+| id         | bigint    | Primary key                       |
+| name       | string    | Nama pengguna                     |
+| email      | string    | Email unik untuk login            |
+| password   | string    | Password terenkripsi              |
+| role       | enum      | admin / customer                  |
+| created_at | timestamp |                                   |
+| updated_at | timestamp |                                   |
 
-<h3>Tabel users</h3>
+### Tabel Categories
+| Kolom      | Tipe      | Keterangan         |
+|------------|-----------|--------------------|
+| id         | bigint    | Primary key        |
+| name       | string    | Nama kategori      |
+| created_at | timestamp |                    |
+| updated_at | timestamp |                    |
 
-| Kolom        | Tipe      | Keterangan                          |
-|--------------|-----------|-------------------------------------|
-| id           | bigint    | Primary key                         |
-| name         | string    | Nama pengguna                       |
-| email        | string    | Unik, untuk login                   |
-| password     | string    | Password terenkripsi                |
-| role         | enum      | admin / customer                    |
-| created_at   | timestamp |                                     |
-| updated_at   | timestamp |                                     |
+### Tabel Products
+| Kolom       | Tipe      | Keterangan                         |
+|-------------|-----------|------------------------------------|
+| id          | bigint    | Primary key                        |
+| name        | string    | Nama tanaman                       |
+| category_id | foreign   | Relasi ke tabel categories         |
+| price       | integer   | Harga tanaman                      |
+| stock       | integer   | Jumlah stok tersedia               |
+| image       | string    | Path gambar                        |
+| description | text      | Deskripsi tanaman                  |
+| created_at  | timestamp |                                    |
+| updated_at  | timestamp |                                    |
 
-<h3>Tabel products</h3>
+### Tabel Orders
+| Kolom      | Tipe      | Keterangan                          |
+|------------|-----------|-------------------------------------|
+| id         | bigint    | Primary key                         |
+| user_id    | foreign   | Relasi ke tabel users (customer)    |
+| status     | enum      | pending / paid                      |
+| created_at | timestamp |                                     |
+| updated_at | timestamp |                                     |
 
-| Kolom        | Tipe      | Keterangan                                 |
-|--------------|-----------|--------------------------------------------|
-| id           | bigint    | Primary key                                |
-| name         | string    | Nama tanaman                               |
-| category_id  | foreign   | ID dari kategori tanaman                   |
-| price        | integer   | Harga satuan                               |
-| stock        | integer   | Jumlah stok tersedia                       |
-| image        | string    | Path ke gambar                             |
-| description  | text      | Deskripsi tanaman                          |
-| created_at   | timestamp |                                            |
-| updated_at   | timestamp |                                            |
-
-<h3>Tabel categories</h3>
-
-| Kolom        | Tipe      | Keterangan             |
-|--------------|-----------|------------------------|
-| id           | bigint    | Primary key            |
-| name         | string    | Nama kategori          |
-| created_at   | timestamp |                        |
-| updated_at   | timestamp |                        |
-
-<h3>Tabel orders</h3>
-
-| Kolom        | Tipe      | Keterangan                                    |
-|--------------|-----------|-----------------------------------------------|
-| id           | bigint    | Primary key                                   |
-| user_id      | foreign   | ID dari pengguna (customer)                   |
-| total        | integer   | Total harga pesanan                           |
-| status       | enum      | pending / paid                                |
-| created_at   | timestamp |                                               |
-| updated_at   | timestamp |                                               |
-
-<h3>Tabel order_items</h3>
-
-| Kolom        | Tipe      | Keterangan                                     |
-|--------------|-----------|------------------------------------------------|
-| id           | bigint    | Primary key                                    |
-| order_id     | foreign   | ID dari order                                  |
-| product_id   | foreign   | ID dari produk yang dibeli                     |
-| quantity     | integer   | Jumlah item                                    |
-| price        | integer   | Harga per item saat transaksi                  |
-| created_at   | timestamp |                                                |
-| updated_at   | timestamp |                                                |
-
----
+### Tabel Order_Items
+| Kolom      | Tipe      | Keterangan                                     |
+|------------|-----------|------------------------------------------------|
+| id         | bigint    | Primary key                                    |
+| order_id   | foreign   | Relasi ke tabel orders                         |
+| product_id | foreign   | Relasi ke tabel products                       |
+| quantity   | integer   | Jumlah yang dibeli                             |
+| price      | integer   | Harga per item saat transaksi                  |
+| total      | integer   | quantity × price (total harga untuk item tsb)  |
+| created_at | timestamp |                                                |
+| updated_at | timestamp |                                                |
 
 <h3>Relasi Antar Tabel – Sistem GreenCart</h3>
 
-| Tabel Asal  | Tabel Tujuan | Jenis Relasi   | Keterangan                                          |
-|-------------|---------------|----------------|----------------------------------------------------|
-| users       | orders        | One to Many   | Customer dapat memiliki banyak pesanan              |
-| orders      | order_items   | One to Many   | Satu pesanan terdiri dari banyak produk             |
-| products    | order_items   | One to Many   | Produk dapat muncul di banyak transaksi             |
-| categories  | products      | One to Many   | Kategori memiliki banyak produk                     |
-
----
+| Tabel Asal   | Tabel Tujuan | Jenis Relasi | Keterangan                              |
+| ------------ | ------------ | ------------ | --------------------------------------- |
+| users        | orders       | One to Many  | Customer dapat memiliki banyak pesanan  |
+| orders       | order_items  | One to Many  | Satu pesanan terdiri dari banyak item   |
+| products     | order_items  | One to Many  | Produk dapat muncul di banyak transaksi |
+| categories   | products     | One to Many  | Kategori memiliki banyak produk         |
+| order_items  | products     | Many to One  | Banyak item mengarah ke satu produk     |
+| order_items  | orders       | Many to One  | Banyak item dalam satu pesanan          |
+| products     | categories   | Many to One  | Produk berasal dari satu kategori       |
+| orders       | users        | Many to One  | Pesanan milik satu customer             |
