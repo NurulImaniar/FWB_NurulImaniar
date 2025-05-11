@@ -7,16 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations. ty
+     * Run the migrations.
      */
     public function up()
 {
-    Schema::create('users', function (Blueprint $table) {
+    Schema::create('products', function (Blueprint $table) {
         $table->id();
         $table->string('name');
-        $table->string('email')->unique();
-        $table->string('password');
-        $table->enum('role', ['admin', 'customer']);
+        $table->foreignId('category_id')->constrained()->onDelete('cascade');
+        $table->integer('price');
+        $table->integer('stock');
+        $table->string('image')->nullable();
+        $table->text('description');
         $table->timestamps();
     });
 }
