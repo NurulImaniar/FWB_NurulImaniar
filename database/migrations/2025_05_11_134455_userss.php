@@ -8,15 +8,18 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('userss', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->enum('role', ['admin', 'customer']);
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('userss');
     }
 };

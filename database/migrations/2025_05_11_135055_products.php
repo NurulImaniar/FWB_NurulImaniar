@@ -7,21 +7,21 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function up()
-{
-    Schema::create('products', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->foreignId('category_id')->constrained()->onDelete('cascade');
-        $table->integer('price');
-        $table->integer('stock');
-        $table->string('image')->nullable();
-        $table->text('description');
-        $table->timestamps();
-    });
-}
-
-    public function down(): void
     {
-        //
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->foreignId('category_id')->constrained('categories');
+            $table->integer('price');
+            $table->integer('stock');
+            $table->string('image');
+            $table->text('description');
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('products');
     }
 };
