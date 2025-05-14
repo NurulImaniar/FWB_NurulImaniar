@@ -22,13 +22,13 @@
 | Registrasi & Login | Akses ke fitur khusus Customer               |
 
 ## 🛍️ Customer
-| Fitur                     | Deskripsi                                             |
-|---------------------------|-------------------------------------------------------|
-| Login                     | Masuk ke akun                                         |
-| Cari dan lihat tanaman    | Menjelajahi etalase dan mencari tanaman               |
-| Tambah ke keranjang       | Memilih produk untuk dibeli                           |
-| Checkout & buat pesanan   | Melakukan pembelian dan konfirmasi transaksi          |
-| Riwayat transaksi         | Melihat semua pesanan sebelumnya                      |
+| Fitur                     | Deskripsi                                          |
+|---------------------------|----------------------------------------------------|
+| Login                     | Masuk ke akun                                      |
+| Cari dan lihat tanaman    | Menjelajahi etalase dan mencari tanaman            |
+| Tambah ke keranjang       | Memilih produk untuk dibeli                        |
+| Checkout & buat pesanan   | Melakukan pembelian dan konfirmasi transaksi       |
+| Riwayat transaksi         | Melihat semua pesanan sebelumnya                   |
 
 ## 🛠️ Admin
 | Fitur                        | Deskripsi                                              |
@@ -120,7 +120,7 @@
 
 <h3>Relasi Antar Tabel – Sistem GreenCart</h3>
 
-| Tabel Asal    | Tabel Tujuan    | Jenis Relasi   | Keterangan                                         |
+| Tabel Asal    | Tabel Tujuan     | Jenis Relasi    | Keterangan                                        |
 |---------------|------------------|----------------|----------------------------------------------------|
 | users         | orders           | One to Many    | Customer dapat memiliki banyak pesanan             |
 | users         | profiles         | One to One     | Setiap user memiliki satu profil tambahan          |
