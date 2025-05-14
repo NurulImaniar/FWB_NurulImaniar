@@ -7,7 +7,7 @@
 
 <p align="center">
   <strong>NURUL IMANIAR</strong><br/><br/>
-  <strong>D00223010</strong><br/><br/>
+  <strong>D0223010</strong><br/><br/>
   <strong>Framework Based Web</strong><br/><br/>
   <strong>2025</strong>
 </p>
@@ -52,6 +52,16 @@
 | created_at | timestamp |                                   |
 | updated_at | timestamp |                                   |
 
+### Tabel Profiles (One to One)
+| Kolom      | Tipe      | Keterangan                        |
+|------------|-----------|-----------------------------------|
+| id         | bigint    | Primary key                       |
+| user_id    | foreign   | Relasi unik ke tabel users        |
+| address    | string    | Alamat lengkap pengguna           |
+| phone      | string    | Nomor HP pengguna                 |
+| created_at | timestamp |                                   |
+| updated_at | timestamp |                                   |
+
 ### Tabel Categories
 | Kolom      | Tipe      | Keterangan         |
 |------------|-----------|--------------------|
@@ -72,6 +82,20 @@
 | description | text      | Deskripsi tanaman                  |
 | created_at  | timestamp |                                    |
 | updated_at  | timestamp |                                    |
+
+### Tabel Tags (Many to Many)
+| Kolom      | Tipe      | Keterangan                 |
+|------------|-----------|----------------------------|
+| id         | bigint    | Primary key                |
+| name       | string    | Nama tag (contoh: 'indoor')|
+| created_at | timestamp |                            |
+| updated_at | timestamp |                            |
+
+### Tabel Product_Tag (Pivot)
+| Kolom      | Tipe      | Keterangan                                   |
+|------------|-----------|----------------------------------------------|
+| product_id | foreign   | Relasi ke tabel products                     |
+| tag_id     | foreign   | Relasi ke tabel tags                         |
 
 ### Tabel Orders
 | Kolom      | Tipe      | Keterangan                          |
@@ -96,13 +120,17 @@
 
 <h3>Relasi Antar Tabel – Sistem GreenCart</h3>
 
-| Tabel Asal   | Tabel Tujuan | Jenis Relasi | Keterangan                              |
-| ------------ | ------------ | ------------ | --------------------------------------- |
-| users        | orders       | One to Many  | Customer dapat memiliki banyak pesanan  |
-| orders       | order_items  | One to Many  | Satu pesanan terdiri dari banyak item   |
-| products     | order_items  | One to Many  | Produk dapat muncul di banyak transaksi |
-| categories   | products     | One to Many  | Kategori memiliki banyak produk         |
-| order_items  | products     | Many to One  | Banyak item mengarah ke satu produk     |
-| order_items  | orders       | Many to One  | Banyak item dalam satu pesanan          |
-| products     | categories   | Many to One  | Produk berasal dari satu kategori       |
-| orders       | users        | Many to One  | Pesanan milik satu customer             |
+| Tabel Asal    | Tabel Tujuan    | Jenis Relasi   | Keterangan                                         |
+|---------------|------------------|----------------|----------------------------------------------------|
+| users         | orders           | One to Many    | Customer dapat memiliki banyak pesanan             |
+| users         | profiles         | One to One     | Setiap user memiliki satu profil tambahan          |
+| orders        | order_items      | One to Many    | Satu pesanan terdiri dari banyak item              |
+| products      | order_items      | One to Many    | Produk dapat muncul di banyak transaksi            |
+| categories    | products         | One to Many    | Kategori memiliki banyak produk                    |
+| products      | tags             | Many to Many   | Produk bisa memiliki banyak tag                    |
+| tags          | products         | Many to Many   | Tag bisa digunakan oleh banyak produk              |
+| order_items   | products         | Many to One    | Banyak item mengarah ke satu produk                |
+| order_items   | orders           | Many to One    | Banyak item dalam satu pesanan                     |
+| products      | categories       | Many to One    | Produk berasal dari satu kategori                  |
+| orders        | users            | Many to One    | Pesanan milik satu customer                        |
+| profiles      | users            | One to One     | Profil hanya untuk satu user                       |
