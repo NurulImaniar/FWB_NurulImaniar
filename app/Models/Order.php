@@ -11,14 +11,12 @@ class Order extends Model
 
     protected $fillable = ['user_id', 'status'];
 
-    // Relasi dengan user
-    public function user()
+    public function Users()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Relasi dengan order_items
-    public function orderItems()
+    public function Order_Items()
     {
         return $this->hasMany(OrderItem::class);
     }
